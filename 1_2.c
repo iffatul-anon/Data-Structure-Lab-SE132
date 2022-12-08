@@ -14,7 +14,7 @@ int main()
 
     for (int i = 1; i <= 2; i++)
     {
-        printf("Enter %dst Element To Insert: ",i);
+        printf("Enter %dst Element To Insert: ", i);
         scanf("%d", &value);
         printf("Enter Position: ");
         scanf("%d", &position);
