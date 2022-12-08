@@ -2,15 +2,28 @@
 
 int main()
 {
-    int array[] = {5, 30, 25, 10, 40, 15, 20, 45, 35, 50};
-    int n = 10, number, flag = 0;
+    int n = 10, number;
+    int array[n];
 
-    printf("Before Deletion : ");
+    printf("Give Array of 10 Elements: ");
     for (int i = 0; i < n; i++)
     {
-        printf("%d ", array[i]);
+        scanf("%d", &array[i]);
     }
     printf("\n");
+
+    printf("Enter a Number for Search: ");
+    scanf("%d", &number);
+
+    int count1 = 0;
+    for (int i = 0; i < n; i++)
+    {
+        count1++;
+        if (array[i] == number)
+        {
+            break;
+        }
+    }
 
     for (int i = 0; i < n; i++)
     {
@@ -32,16 +45,13 @@ int main()
     }
     printf("\n");
 
-    printf("Enter a Number: ");
-    scanf("%d", &number);
-
     int low, high, mid;
     low = 0;
     high = n - 1;
-    int count1 = 0;
+    int count2 = 0;
     while (low <= high)
     {
-        count1++;
+        count2++;
         mid = (low + high) / 2;
         if (array[mid] == number)
         {
@@ -57,18 +67,8 @@ int main()
         }
     }
 
-    int count2 = 0;
-    for (int i = 0; i < n; i++)
-    {
-        count2++;
-        if (array[i] == number)
-        {
-            break;
-        }
-    }
-
-    printf("Element found through Binary Search In %d steps\n", count1);
-    printf("Element found through Linear Search In %d steps\n", count2);
+    printf("Element found through Linear Search In %d steps\n", count1);
+    printf("Element found through Binary Search In %d steps\n", count2);
 
     printf("\n");
     return 0;
