@@ -1,82 +1,68 @@
-#include<bits/stdc++.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-using namespace std;
-
-struct node
-{
-	char key;
-	struct node *left, *right;
+struct node {
+  char item;
+  struct node *left;
+  struct node *right;
 };
 
-struct node *newNode(int item)
-{
-	struct node *temp = (struct node *)malloc(sizeof(struct node));
-	temp->key = item;
-	temp->left = temp->right = NULL;
-	return temp;
+void inorderTraversal(struct node *root) {
+  if (root == NULL) return;
+  inorderTraversal(root->left);
+  printf("%c ->", root->item);
+  inorderTraversal(root->right);
 }
 
-void inorder(struct node *root)
-{
-	if (root != NULL)
-	{
-		inorder(root->left);
-		cout<<root->key<<endl;
-		inorder(root->right);
-	}
+void preorderTraversal(struct node *root) {
+  if (root == NULL) return;
+  printf("%c ->", root->item);
+  preorderTraversal(root->left);
+  preorderTraversal(root->right);
 }
 
-
-void print_preorder(struct node * root)
-{
-    if (root)
-    {
-        cout<<root->key<<endl;
-        print_preorder(root->left);
-        print_preorder(root->right);
-    }
-
+void postorderTraversal(struct node *root) {
+  if (root == NULL) return;
+  postorderTraversal(root->left);
+  postorderTraversal(root->right);
+  printf("%c ->", root->item);
 }
 
-void print_postorder(struct node * root)
-{
-    if (root)
-    {
-        print_postorder(root->left);
-        print_postorder(root->right);
-        cout<<root->key<<endl;
-    }
+struct node *createNode(value) {
+  struct node *newNode = malloc(sizeof(struct node));
+  newNode->item = value;
+  newNode->left = NULL;
+  newNode->right = NULL;
+
+  return newNode;
 }
 
-struct node* insert(struct node* node, int key)
-{
-	
-	if (node == NULL) return newNode(key);
-
-	if (key < node->key)
-		node->left = insert(node->left, key);
-	else if (key > node->key)
-		node->right = insert(node->right, key);
-
-	return node;
+struct node *insertLeft(struct node *root, int value) {
+  root->left = createNode(value);
+  return root->left;
 }
 
-int main()
-{
-	struct node *root = NULL;
-	root = insert(root, 'M');
-	insert(root, 'N');
-	insert(root, 'O');
-	insert(root, 'P');
-	insert(root, 'Q');
+struct node *insertRight(struct node *root, int value) {
+  root->right = createNode(value);
+  return root->right;
+}
 
-	cout<<"\nPre-Order \n";
-	print_preorder(root);
-	cout<<"\nIn-order"<<endl;
-	inorder(root);
-	cout<<"\n\n"<<"Post Order \n";
-	print_postorder(root);
+int main() {
+  struct node *root = createNode('M');
+  insertLeft(root, 'N');
+  insertRight(root, 'O');
 
+  insertLeft(root->right, 'P');
+  insertRight(root->right, 'Q');
 
-	return 0;
+  printf("Inorder traversal \n");
+  inorderTraversal(root);
+
+  printf("\nPreorder traversal \n");
+  preorderTraversal(root);
+
+  printf("\nPostorder traversal \n");
+  postorderTraversal(root);
+
+  return 0;
 }
