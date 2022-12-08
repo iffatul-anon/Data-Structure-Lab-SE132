@@ -46,9 +46,8 @@ int main()
             n--;
             for (int i = mid; i < n; i++)
             {
-                array[mid] = array[mid + 1];
+                array[i] = array[i + 1];
                 flag = 1;
-                break;
             }
         }
         else if (array[mid] > number)
