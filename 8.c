@@ -1,82 +1,64 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-#define MAX 10
-
-int queue[MAX];
-int rear = -1;
-int front = -1;
-
-void insert()
+struct Node
 {
-    int add_item;
-    if (rear == MAX - 1)
-    printf("Queue Overflow \n");
-    else
-    {
-        if (front == - 1)
-        front = 0;
-        printf("Inset the element in queue : ");
-        scanf("%d", &add_item);
-        rear = rear + 1;
-        queue[rear] = add_item;
-    }
-}
-
-void delete()
-{
-    if (front == - 1 || front > rear)
-    {
-        printf("Queue Underflow \n");
-        return ;
-    }
-    else
-    {
-        printf("Element deleted from queue is : %d\n", queue[front]);
-        front = front + 1;
-    }
-}
-
-void display()
-{
-    int i;
-    if (front == - 1)
-        printf("Queue is empty \n");
-    else
-    {
-        printf("Queue is : ");
-        for (i = front; i <= rear; i++)
-            printf("%d ", queue[i]);
-        printf("\n");
-    }
-}
+    int data;
+    struct Node *next;
+};
 
 int main()
 {
-    int choice;
-    while (1)
+    struct Node *node;
+    struct Node *one = NULL;
+    struct Node *two = NULL;
+    struct Node *three = NULL;
+    struct Node *four = NULL;
+    struct Node *five = NULL;
+
+    one = malloc(sizeof(struct Node));
+    two = malloc(sizeof(struct Node));
+    three = malloc(sizeof(struct Node));
+    four = malloc(sizeof(struct Node));
+    five = malloc(sizeof(struct Node));
+
+    one->data = 1;
+    two->data = 2;
+    three->data = 3;
+    four->data = 4;
+    five->data = 5;
+
+    one->next = two;
+    two->next = three;
+    three->next = four;
+    four->next = five;
+    five->next = NULL;
+
+    int new_data;
+    struct Node *new_node = NULL;
+
+    new_node = malloc(sizeof(struct Node));
+
+    printf("Enter New Data: ");
+    scanf("%d", &new_data);
+
+    node = one;
+    while (node->next != NULL)
     {
-        printf("1.Insert element to queue \n");
-        printf("2.Delete element from queue \n");
-        printf("3.Display all elements of queue \n");
-        printf("4.Quit \n");
-        printf("Enter your choice : ");
-        scanf("%d", &choice);
-        switch (choice)
-        {
-            case 1:
-            insert();
-            break;
-            case 2:
-            delete();
-            break;
-            case 3:
-            display();
-            break;
-            case 4:
-            return 0;
-            default:
-            printf("Wrong choice \n");
-        } 
+        node = node->next;
     }
+    new_node->data = new_data;
+    node->next = new_node;
+    new_node->next = NULL;
+
+    node = one;
+    printf("\nElements of the Data Set: ");
+    while (node != NULL)
+    {
+        printf("%d ", node->data);
+        node = node->next;
+    }
+    printf("\n");
+
+    return 0;
 }
