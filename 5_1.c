@@ -4,11 +4,11 @@ int main()
 {
     char str[100], c;
     int left, right, middle;
-    printf("\nenter a string:");
+    printf("\nEnter a string:");
     gets(str);
     int n = strlen(str);
 
-    printf("\nenter a character to find its position:");
+    printf("\nEnter a character to find :");
     scanf("%c", &c);
 
     for (int i = 0; i < n; i++)
@@ -31,7 +31,7 @@ int main()
         middle = (left + right) / 2;
         if (str[middle] == c)
         {
-            printf("Item found\n");
+            printf("Character is found\n");
             return 0;
         }
         else if (str[middle] < c)
@@ -43,5 +43,5 @@ int main()
             right = middle - 1;
         }
     }
-    printf("Item not found\n");
+    printf("Character is not found\n");
 }
