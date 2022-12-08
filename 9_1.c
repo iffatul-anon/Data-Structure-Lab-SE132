@@ -58,10 +58,10 @@ int main() {
   printf("Inorder traversal \n");
   inorderTraversal(root);
 
-  printf("\nPreorder traversal \n");
+  printf("\n\nPreorder traversal \n");
   preorderTraversal(root);
 
-  printf("\nPostorder traversal \n");
+  printf("\n\nPostorder traversal \n");
   postorderTraversal(root);
 
   return 0;
